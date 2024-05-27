@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Signup</title>
+  <!-- Bootstrap CSS -->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      /* background-color: aqua; */
+    }
+    .container {
+      width: 400px;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #007bff;
+    }
+    .form-label {
+      font-weight: bold;
+      color: #555;
+    }
+    .form-control {
+      border-color: #ced4da;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+      width: 100%;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+  </style>
+</head>
+<body style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+height: 100vh">
+  <div class="container">
+    <h2 class="text-center mb-4">Sign Up</h2>
+    <form #formval="ngForm" (ngSubmit)="signUp(formval.value)">
+      <div class="mb-3">
+        <label for="username" class="form-label">Enter Name</label>
+        <input type="text" class="form-control" id="username" name="username" ngModel required #name="ngModel" pattern="[a-z A-Z]+$">
+        <br>
+        <span *ngIf="name.invalid &&name.touched" style="color: red;">Please Enter Valid Name</span>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Enter Email</label>
+        <input type="email" class="form-control" id="email" name="email" ngModel required #email="ngModel" email>
+        <br>
+        <span *ngIf="email.invalid&&email.touched" style="color: red;">Please Enter Valid Email</span>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" ngModel required #password="ngModel" minlength="3" maxlength="10">
+        <br>
+        <span *ngIf="password.invalid&&password.touched" style="color: red;">Please Enter Valid Password</span>
+      </div>
+
+      <button [disabled]="formval.invalid" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+  <!-- <div>
+
+    <h1>Login if you have already signUp : <a routerLink="my-blog">Login</a></h1>
+
+  </div> -->
+
+  <!-- Bootstrap JS (optional if you need JavaScript features) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
