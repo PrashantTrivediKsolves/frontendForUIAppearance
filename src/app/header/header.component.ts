@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SignUpService } from '../services/sign-up.service';
-import { Router } from '@angular/router';
+import { Router ,NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,7 +9,14 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   status:boolean=false;
   loggedUserName:any;
-  constructor(private userStatus:SignUpService,private route:Router) { }
+  currentRoute: string = '';
+  constructor(private userStatus:SignUpService,private route:Router) {
+    this.route.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+      }
+    });
+  }
 
   ngOnInit(): void {
     // this.userStatus.UserLoggedIn.subscribe((res)=>{
@@ -39,6 +46,9 @@ export class HeaderComponent implements OnInit {
     // this.status=false;
     this.route.navigate(["home"]);
 
+  }
+  isActive(route: string): boolean {
+    return this.currentRoute === route;
   }
 
 

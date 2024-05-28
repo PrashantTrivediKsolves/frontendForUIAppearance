@@ -21,8 +21,10 @@ import { SigninComponent } from './signin/signin.component';
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
+import { CreateBlogComponent } from './create-blog/create-blog.component';
 
 @NgModule({
+
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -30,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     AllBlogsComponent,
     MyblogsComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    CreateBlogComponent,
   ],
   imports: [
     BrowserModule,

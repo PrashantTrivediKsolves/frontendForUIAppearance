@@ -9,8 +9,6 @@
     body {
       font-family: 'Arial', sans-serif;
       background-color: #f3f2ef;
-      margin: 0;
-      padding: 0;
     }
 
     .container {
@@ -43,11 +41,6 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      transition: box-shadow 0.3s;
-    }
-
-    .blog-item:hover {
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     }
 
     .blog-item h1 {
@@ -71,7 +64,6 @@
     .blog-item img {
       border-radius: 8px;
       max-width: 100%;
-      height: auto;
     }
 
     .btn-primary {
@@ -95,8 +87,28 @@
 </head>
 <body>
   <div class="container">
+    <div class="form-container">
+      <form #DemoFile="ngForm" (ngSubmit)="submitForm(DemoFile.value)">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" class="form-control" id="title" name="title" ngModel required>
+        </div>
+        <div class="form-group">
+          <label for="content">Content:</label>
+          <textarea class="form-control" id="content" name="content" ngModel required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="file">File:</label>
+          <input type="file" class="form-control-file" id="file" (change)="onFileSelected($event)" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <button class="btn btn-secondary mt-4" (click)="getAllFiles()">Fetch Files</button>
+
     <div class="blog-container mt-4">
-      <div class="blog-item" *ngFor="let file of blogs">
+      <div class="blog-item" *ngFor="let file of images">
         <h1>{{ file.title }}</h1>
         <h5>{{ file.content }}</h5>
         <p><strong>Name:</strong> {{ file.name }}</p>

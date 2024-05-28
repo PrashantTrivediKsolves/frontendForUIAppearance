@@ -5,6 +5,7 @@ import { AllBlogsComponent } from './all-blogs/all-blogs.component';
 import { MyblogsComponent } from './myblogs/myblogs.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
+import { CreateBlogComponent } from './create-blog/create-blog.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path:"signin",
     component:SigninComponent
+  }
+  ,
+  {
+    path:"create-Blog",
+    component:CreateBlogComponent
   }
 ];
 
