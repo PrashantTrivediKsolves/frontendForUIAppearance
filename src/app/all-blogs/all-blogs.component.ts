@@ -153,22 +153,21 @@ export class AllBlogsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.blogservice.getAllBlogs()
-      .subscribe(
-        (blogs: any[]) => {
-          this.blogs = blogs;
-          blogs.forEach(blog => {
-            this.fetchLikeDislikeCounts(blog.id);
-            this.fetchComments(blog.id);
-          });
-        },
-        error => {
-          console.error('Error fetching blogs:', error);
-        }
-      );
+    this.blogservice.getAllBlogs().subscribe(
+      (blogs: any[]) => {
+        this.blogs = blogs;
+        blogs.forEach(blog => {
+          this.fetchLikeDislikeCounts(blog.id);
+          this.fetchComments(blog.id);
+        });
+      },
+      error => {
+        console.error('Error fetching blogs:', error);
+      }
+    );
 
-    let userStore = localStorage.getItem('user');
-    let userData = userStore && JSON.parse(userStore);
+    const userStore = localStorage.getItem('user');
+    const userData = userStore && JSON.parse(userStore);
     this.userId = userData?.id;
   }
 
@@ -211,9 +210,14 @@ export class AllBlogsComponent implements OnInit {
     const comment = {
       userId: this.userId,
       postId: postId,
-      comment: this.newComment[postId]
+      comment: this.newComment[postId],
+      // author: 'User', // You can replace this with the actual user name
+      // date: new Date()
     };
-    this.commentService.addComment(comment).subscribe((newComment: any) => {
+    console.log("after adding comment");
+    console.log(comment);
+    this.commentService.addComment(comment)
+    .subscribe((newComment: any) => {
       this.comments[postId].push(newComment);
       this.newComment[postId] = ''; // Clear the input field
     });

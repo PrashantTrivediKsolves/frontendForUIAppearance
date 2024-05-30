@@ -340,12 +340,15 @@
       width: 100%;
       height: 60px;
       margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 10px;
     }
 
     .comment {
       background: #f9f9f9;
       padding: 10px;
-      border-radius: 5px;
+      border-radius: 8px;
       margin-bottom: 10px;
     }
 
@@ -356,6 +359,15 @@
 
     .comment-text {
       margin-bottom: 5px;
+    }
+
+    .comment-date {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .comments-container {
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -371,7 +383,6 @@
             <button (click)="likeToTheBlog(blog.id)" class="btn btn-primary">Like</button>
             <span>Total likes: {{ likeCounts[blog.id] || 0 }}</span>
           </div>
-
           <div>
             <button (click)="dislikeToTheBlog(blog.id)" class="btn btn-secondary">Dislike</button>
             <span>Total dislikes: {{ dislikeCounts[blog.id] || 0 }}</span>
@@ -379,12 +390,19 @@
         </div>
 
         <div class="comment-section">
-          <textarea [(ngModel)]="newComment[blog.id]" placeholder="Add a comment..."></textarea>
-          <button (click)="addComment(blog.id)" class="btn btn-primary">Comment</button>
-          <div class="comments" *ngFor="let comment of comments[blog.id]">
+          <form #commentForm="ngForm" (ngSubmit)="addComment(blog.id)">
+            <div class="form-group">
+              <label for="content">Add a comment:</label>
+              <textarea class="form-control" id="content" name="content" [(ngModel)]="newComment[blog.id]" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Comment</button>
+          </form>
+
+          <div class="comments-container" *ngFor="let comment of comments[blog.id]">
             <div class="comment">
               <!-- <div class="comment-author">{{ comment.author }}</div> -->
               <div class="comment-text">{{ comment.comment }}</div>
+              <div class="comment-date">{{ comment.date | date:'short' }}</div>
             </div>
           </div>
         </div>
