@@ -35,9 +35,9 @@ export class BlogServiceService {
     return this.http.get<any[]>('http://localhost:8001/uploads');
   }
 
-  getAllmyBlogs(userid:any)
+  getAllmyBlogs(userId:any)
   {
-    return this.http.get<any[]>(`http://localhost:8001/getAllTheBlogsOfThatUser/${userid}`);
+    return this.http.get<any[]>(`http://localhost:8001/getAllTheBlogsOfUser/${userId}`);
   }
 
 

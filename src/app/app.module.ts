@@ -24,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
 
@@ -38,6 +40,8 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     CreateBlogComponent,
     UserProfileComponent,
     RegisterUserComponent,
+    FourzerofourComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

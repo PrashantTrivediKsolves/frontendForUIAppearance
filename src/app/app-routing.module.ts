@@ -16,8 +16,15 @@ import { CreateBlogComponent } from './create-blog/create-blog.component';
 
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
+  {
+    path:"",
+    component:LandingPageComponent
+  }
+  ,
   {
     path:"home",
     component:HomeComponent
@@ -51,6 +58,10 @@ const routes: Routes = [
   {
     path:"All-users",
     component:RegisterUserComponent
+  },
+  {
+    path:"**",
+    component:FourzerofourComponent
   }
 ];
 

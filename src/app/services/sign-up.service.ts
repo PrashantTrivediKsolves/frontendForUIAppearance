@@ -53,7 +53,7 @@ export class SignUpService {
            // Assuming server response contains user data
           this.UserLoggedIn.next(true);
 
-          this.router.navigate(["home"]);
+          this.router.navigate(["All-blogs"]);
 
           let token=res.token;
 
