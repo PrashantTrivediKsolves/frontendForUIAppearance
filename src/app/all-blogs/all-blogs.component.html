@@ -377,7 +377,7 @@
             <span>Total dislikes: {{ dislikeCounts[blog.id] || 0 }}</span>
           </div>
         </div>
-        
+
         <div class="comment-section">
           <textarea [(ngModel)]="newComment[blog.id]" placeholder="Add a comment..."></textarea>
           <button (click)="addComment(blog.id)" class="btn btn-primary">Comment</button>
