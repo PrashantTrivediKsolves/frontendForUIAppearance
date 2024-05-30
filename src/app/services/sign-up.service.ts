@@ -13,7 +13,10 @@ export class SignUpService {
 
   UserLoggedIn=new BehaviorSubject<boolean>(false);
 
+  userId=new Subject<any>();
+
   isLoginError=new EventEmitter(false);
+
   subject = new Subject<String>();
 
   constructor(private http:HttpClient,private router:Router) { }
@@ -21,6 +24,7 @@ export class SignUpService {
   signUpUser(data:any)
   {
     // this.http.post("http://localhost:8001/signup", data,{observe:'response'}).subscribe((res)=>
+
     this.http.post("http://localhost:8001/signup", data,{observe:'response'}).subscribe((res)=>
     {
         if(res)
@@ -58,6 +62,8 @@ export class SignUpService {
           console.log("decoded id");
 
           console.log(decoded.id);
+          // this.userId=decoded.id;
+          this.userId.next(decoded.id);
 
           this.subject.next(decoded.username);
 

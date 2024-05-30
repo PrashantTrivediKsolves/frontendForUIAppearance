@@ -13,6 +13,7 @@
       padding: 0;
     }
 
+
     .navbar {
       background-color: #0073b1;
     }
@@ -63,7 +64,7 @@
   <div>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand" routerLink="home">Blog</a>
+        <a class="navbar-brand" [ngClass]="{'active': isActive('/All-blogs')}" routerLink="All-blogs">Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -93,10 +94,16 @@
                 <a class="nav-link" [ngClass]="{'active': isActive('/my-blogs')}" routerLink="my-blogs">My Blogs</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active': isActive('/userProfile')}" routerLink="userProfile">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active': isActive('/All-users')}" routerLink="All-users">Registered-User</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link logout" (click)="logout()">Logout</a>
               </li>
               <li class="nav-item">
-                <p class="nav-link">{{ loggedUserName }}</p>
+                <p class="nav-link" style="color: blueviolet;">{{ loggedUserName }}</p>
               </li>
             </ul>
           </div>

@@ -22,6 +22,8 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 @NgModule({
 
@@ -34,6 +36,8 @@ import { CreateBlogComponent } from './create-blog/create-blog.component';
     SignupComponent,
     SigninComponent,
     CreateBlogComponent,
+    UserProfileComponent,
+    RegisterUserComponent,
   ],
   imports: [
     BrowserModule,
