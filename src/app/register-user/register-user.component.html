@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -68,6 +68,116 @@
         <h5>{{user.email}}</h5>
         <button (click)="FollowMe(user.id)">Follow</button>
         <button (click)="UnFollowMe(user.id)">UnFollow</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Users</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f3f2ef;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .user-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 300px;
+    }
+
+    .user-card:hover {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .profile-picture {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 2px solid #0073b1;
+    }
+
+    .user-card h1 {
+      font-size: 22px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .user-card h5 {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .user-card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .btn-custom {
+      background-color: #0073b1;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 5px;
+      margin: 5px 0;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-custom:hover {
+      background-color: #005f8c;
+    }
+
+    .btn-unfollow {
+      background-color: #ddd;
+      color: #333;
+    }
+
+    .btn-unfollow:hover {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="user-card-container">
+      <div *ngFor="let user of AllUsers" class="user-card">
+        <img class="profile-picture" [src]="'http://localhost:8001/uploads/' + user.name" alt="Profile Picture">
+        <h1>{{user.username}}</h1>
+        <h5>{{user.email}}</h5>
+        <button class="btn-custom" (click)="FollowMe(user.id)">Follow</button>
+        <button class="btn-custom btn-unfollow" (click)="UnFollowMe(user.id)">Unfollow</button>
       </div>
     </div>
   </div>
