@@ -124,7 +124,10 @@
       <img class="profile-picture" [src]="'http://localhost:8001/uploads/' + userInformations.name" alt="Profile Picture">
       <div class="profile-name">Name - {{ userInformations.username }}</div>
       <div class="profile-email">Email - {{ userInformations.email }}</div>
-      <div class="profile-username" Foll>{{ userInformations.name }}</div>
+      <div>
+        <button (click)="numberOfFollowers(userInformations.id)" class="btn btn-primary">Followlers</button>
+        <span>Total followlers: {{ followCounts[userInformations.id] || 0 }}</span>
+      </div>
     </div>
 
     <div class="blog-container mt-4">

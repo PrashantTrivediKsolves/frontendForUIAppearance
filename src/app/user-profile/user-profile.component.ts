@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileServiceService } from '../services/profile-service.service';
+import { FollowServiceService } from '../services/follow-service.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,7 +10,9 @@ import { ProfileServiceService } from '../services/profile-service.service';
 export class UserProfileComponent implements OnInit {
   userInformations:any;
   userId:any;
-  constructor(private profileservice:ProfileServiceService) { }
+  followCounts: { [key: number]: number } = {};
+  followlers:any;
+  constructor(private profileservice:ProfileServiceService,private followUserService:FollowServiceService) { }
   ngOnInit(): void {
     let userStore=localStorage.getItem('user');
     console.log(userStore);
@@ -27,6 +30,13 @@ export class UserProfileComponent implements OnInit {
         console.error('Error fetching images:', error);
       }
     );
+  }
+  numberOfFollowers(userId:any)
+  {
+    this.followUserService.getAllFollowersOfLoggedUser().subscribe((res)=>
+    {
+      this.followCounts[this.userId]=res.length;
+    })
   }
 
 }

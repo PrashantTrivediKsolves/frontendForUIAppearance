@@ -142,7 +142,7 @@
       gap: 20px;
       justify-content: center;
     }
-
+    
     .btn-custom {
       background-color: #0073b1;
       color: #fff;
@@ -178,6 +178,10 @@
         <h5>{{user.email}}</h5>
         <button class="btn-custom" (click)="FollowMe(user.id)">Follow</button>
         <button class="btn-custom btn-unfollow" (click)="UnFollowMe(user.id)">Unfollow</button>
+        <div>
+          <!-- <button (click)="usersFollowlers(user.id)" class="btn btn-primary">foll</button> -->
+          <span>Total followlers: {{ followCounts[user.id] || 0 }}</span>
+        </div>
       </div>
     </div>
   </div>

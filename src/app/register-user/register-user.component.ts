@@ -10,16 +10,37 @@ import { FollowServiceService } from '../services/follow-service.service';
 export class RegisterUserComponent implements OnInit {
 
   AllUsers:any;
-
+  followCounts: { [key: number]: number } = {};
   constructor(private registerUser:RegisterUserService,private followservice:FollowServiceService) { }
 
   ngOnInit(): void {
     this.registerUser.getAllUsers().subscribe((res)=>
     {
       this.AllUsers=res;
+
+      this.AllUsers.forEach((user:any)=>
+      {
+        this.fetchFollowlersCount(user.id);
+      })
     })
   }
+  usersFollowlers(userId:any)
+  {
+    this.registerUser.getAllUsers().subscribe((res)=>
+      {
+        this.AllUsers=res;
 
+        this.AllUsers.forEach((user:any)=>
+        {
+          this.fetchFollowlersCount(user.id);
+        })
+      })
+  }
+  fetchFollowlersCount(userId: any) {
+    this.followservice.getAllUserFollower(userId).subscribe((res: any) => {
+      this.followCounts[userId] = res.length;
+    });
+  }
   FollowMe(followId:any){
     const body={
       FollowId:followId,
@@ -33,4 +54,6 @@ export class RegisterUserComponent implements OnInit {
     }
     this.followservice.UnFollowUser(body);
   }
+
+
 }

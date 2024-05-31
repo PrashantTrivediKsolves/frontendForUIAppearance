@@ -13,9 +13,6 @@ export class FollowServiceService {
     console.log(userData);
     this.userId=userData.id;
   }
-
-
-
   FollowUser(followerId:any){
     this.http.post(`http://localhost:8001/follow/${this.userId}`, followerId,{observe:'response'}).subscribe((res)=>
       {
@@ -35,5 +32,14 @@ export class FollowServiceService {
       });
   }
 
+  getAllFollowersOfLoggedUser()
+  {
+     return this.http.get<any[]>(`http://localhost:8001/followlers/${this.userId}`);
 
+  }
+
+  getAllUserFollower(FollowId:any)
+  {
+    return this.http.get<any[]>(`http://localhost:8001/userfollowlers/${FollowId}`);
+  }
 }
