@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterUserService } from '../services/register-user.service';
 import { FollowServiceService } from '../services/follow-service.service';
+import { BlogServiceService } from '../services/blog-service.service';
+
+
 
 @Component({
   selector: 'app-register-user',
@@ -11,7 +14,9 @@ export class RegisterUserComponent implements OnInit {
 
   AllUsers:any;
   followCounts: { [key: number]: number } = {};
-  constructor(private registerUser:RegisterUserService,private followservice:FollowServiceService) { }
+  showAllUserPost:any;
+
+  constructor(private registerUser:RegisterUserService,private followservice:FollowServiceService,private blogservice:BlogServiceService) { }
 
   ngOnInit(): void {
     this.registerUser.getAllUsers().subscribe((res)=>
@@ -45,15 +50,28 @@ export class RegisterUserComponent implements OnInit {
     const body={
       FollowId:followId,
     }
-    this.followservice.FollowUser(body);
+    if(confirm('Are you sure you want to follow'))
+    {
+        this.followservice.FollowUser(body);
+    }
   }
   UnFollowMe(followerId:any)
   {
     const body={
       FollowId:followerId,
     }
-    this.followservice.UnFollowUser(body);
+    if(confirm('Are you sure you want to unfollow'))
+    {
+      this.followservice.UnFollowUser(body);
+    }
   }
-
-
+  showAllPostOfThatUsers(userId:any)
+  {
+    this.blogservice.getAllmyBlogs(userId).subscribe((res)=>
+    {
+      this.showAllUserPost=res;
+      this.registerUser.userPosts.next(res);
+    })
+  }
 }
+

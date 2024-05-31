@@ -142,7 +142,6 @@
       gap: 20px;
       justify-content: center;
     }
-    
     .btn-custom {
       background-color: #0073b1;
       color: #fff;
@@ -181,6 +180,9 @@
         <div>
           <!-- <button (click)="usersFollowlers(user.id)" class="btn btn-primary">foll</button> -->
           <span>Total followlers: {{ followCounts[user.id] || 0 }}</span>
+        </div>
+        <div>
+          <a routerLink="/getuserPosts" (click)="showAllPostOfThatUsers(user.id)">posts</a>
         </div>
       </div>
     </div>

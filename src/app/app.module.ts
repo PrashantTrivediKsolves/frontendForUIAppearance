@@ -26,6 +26,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ShowAllPostOfEachUserComponent } from './show-all-post-of-each-user/show-all-post-of-each-user.component';
 
 @NgModule({
 
@@ -42,6 +43,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     RegisterUserComponent,
     FourzerofourComponent,
     LandingPageComponent,
+    ShowAllPostOfEachUserComponent,
   ],
   imports: [
     BrowserModule,

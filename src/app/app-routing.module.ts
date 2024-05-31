@@ -18,6 +18,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ShowAllPostOfEachUserComponent } from './show-all-post-of-each-user/show-all-post-of-each-user.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,10 @@ const routes: Routes = [
   {
     path:"All-users",
     component:RegisterUserComponent
+  },
+  {
+    path:"getuserPosts",
+    component:ShowAllPostOfEachUserComponent
   },
   {
     path:"**",
