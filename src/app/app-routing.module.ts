@@ -19,6 +19,7 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ShowAllPostOfEachUserComponent } from './show-all-post-of-each-user/show-all-post-of-each-user.component';
+import { SearchUserComponent } from './search-user/search-user.component';
 
 const routes: Routes = [
   {
@@ -65,9 +66,14 @@ const routes: Routes = [
     component:ShowAllPostOfEachUserComponent
   },
   {
+    path:"search",
+    component:SearchUserComponent
+  },
+  {
     path:"**",
     component:FourzerofourComponent
   }
+
 ];
 
 @NgModule({

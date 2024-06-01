@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Users</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f3f2ef;
+      margin: 0;
+      padding: 0;
+    }
+
+    .search-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .profile-card {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
+      transition: box-shadow 0.3s;
+    }
+
+    .profile-card:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-picture {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 15px;
+      border: 2px solid #0073b1;
+    }
+
+    .profile-details h4 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #0073b1;
+    }
+
+    .profile-details h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .profile-details button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      border: none;
+      background-color: #0073b1;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .profile-details button:hover {
+      background-color: #005f8c;
+    }
+
+    .no-users-found {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #777;
+      margin-top: 20px;
+    }
+
+    .blog-container {
+      margin-top: 30px;
+    }
+
+    .blog-item {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s;
+    }
+
+    .blog-item:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .blog-item h1 {
+      font-size: 1.5rem;
+      color: #0073b1;
+      margin-bottom: 10px;
+    }
+
+    .blog-item h5 {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .blog-item p {
+      font-size: 0.9rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .blog-item img {
+      border-radius: 8px;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container search-container">
+    <div class="input-group">
+      <input type="text" #search class="form-control" placeholder="Search Users">
+      <div class="input-group-append">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+      </div>
+    </div>
+    <div *ngIf="users.length > 0">
+      <div *ngFor="let user of users" class="profile-card">
+        <img class="profile-picture" [src]="'http://localhost:8001/uploads/' + user.name" alt="Profile Picture">
+        <div class="profile-details">
+          <h4>{{ user.username }}</h4>
+          <h3>{{ user.email }}</h3>
+          <button (click)="showAllPostOfThatUsers(user.id)">Show My Posts</button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="users.length === 0" class="no-users-found">
+      <p>No users found.</p>
+    </div>
+  </div>
+
+  <div class="container blog-container">
+    <div class="blog-item" *ngFor="let post of showAllUserPost">
+      <h1>{{ post.title }}</h1>
+      <h5>{{ post.content }}</h5>
+      <img [src]="'http://localhost:8001/uploads/' + post.name" alt="Uploaded Image">
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

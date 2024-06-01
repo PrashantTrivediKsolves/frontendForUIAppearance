@@ -54,6 +54,7 @@ export class RegisterUserComponent implements OnInit {
     {
         this.followservice.FollowUser(body);
     }
+    alert('user Follow successFull');
   }
   UnFollowMe(followerId:any)
   {
@@ -64,6 +65,7 @@ export class RegisterUserComponent implements OnInit {
     {
       this.followservice.UnFollowUser(body);
     }
+    alert('user unFollow successFull');
   }
   showAllPostOfThatUsers(userId:any)
   {

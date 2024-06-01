@@ -27,7 +27,8 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 import { FourzerofourComponent } from './fourzerofour/fourzerofour.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ShowAllPostOfEachUserComponent } from './show-all-post-of-each-user/show-all-post-of-each-user.component';
-
+import { SearchUserComponent } from './search-user/search-user.component';
+import { ReactiveFormsModule } from '@angular/forms'
 @NgModule({
 
   declarations: [
@@ -44,12 +45,14 @@ import { ShowAllPostOfEachUserComponent } from './show-all-post-of-each-user/sho
     FourzerofourComponent,
     LandingPageComponent,
     ShowAllPostOfEachUserComponent,
+    SearchUserComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

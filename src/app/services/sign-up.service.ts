@@ -19,7 +19,14 @@ export class SignUpService {
 
   subject = new Subject<String>();
 
-  constructor(private http:HttpClient,private router:Router) { }
+  constructor(private http:HttpClient,private router:Router) {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      this.UserLoggedIn.next(true);
+      this.subject.next(user.name);
+    }
+  }
 
   signUpUser(data:any)
   {
@@ -87,5 +94,22 @@ export class SignUpService {
     {
       return error
     }
+  }
+
+
+
+
+  // Call this method when the user logs in successfully
+  setUser(name: string) {
+    localStorage.setItem('user', JSON.stringify({ name }));
+    this.UserLoggedIn.next(true);
+    this.subject.next(name);
+  }
+
+  // Call this method when the user logs out
+  clearUser() {
+    localStorage.removeItem('user');
+    this.UserLoggedIn.next(false);
+    this.subject.next('');
   }
 }
