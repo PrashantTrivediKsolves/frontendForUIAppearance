@@ -19,6 +19,7 @@ export class MyblogsComponent implements OnInit {
     this.blogservice.getAllmyBlogs(this.userId).subscribe((res)=>
     {
       this.Allmyblogs=res;
+
     })
   }
 

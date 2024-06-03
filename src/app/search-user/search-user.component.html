@@ -139,7 +139,8 @@
         <div class="profile-details">
           <h4>{{ user.username }}</h4>
           <h3>{{ user.email }}</h3>
-          <button (click)="showAllPostOfThatUsers(user.id)">Show My Posts</button>
+          <button (click)="showAllPostOfThatUsers(user.id)" style="margin: 5px;">Show My Posts</button>
+          <button (click)="showAllcomments(user.id)">comments..</button>
         </div>
       </div>
     </div>
@@ -153,6 +154,7 @@
       <h1>{{ post.title }}</h1>
       <h5>{{ post.content }}</h5>
       <img [src]="'http://localhost:8001/uploads/' + post.name" alt="Uploaded Image">
+      
     </div>
   </div>
 

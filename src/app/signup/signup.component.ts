@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+
 import { SignUpService } from '../services/sign-up.service';
+
 import { HttpClient } from '@angular/common/http';
+
 import { BlogServiceService } from '../services/blog-service.service';
+
+import { flatMap } from 'rxjs';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -10,10 +16,12 @@ import { BlogServiceService } from '../services/blog-service.service';
 export class SignupComponent implements OnInit {
 
   selectedFile: File | null = null;
+
   constructor(private http: HttpClient,private blogservice:BlogServiceService,private signupservice:SignUpService) {}
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] as File;
+
   }
 
   ngOnInit(): void {
@@ -27,10 +35,15 @@ export class SignupComponent implements OnInit {
     }
 
     const formData = new FormData();
+
     formData.append('username',formVal.username);
+
     formData.append('email',formVal.email);
+
     formData.append('password',formVal.password);
+
     formData.append('file', this.selectedFile);
+
     this.signupservice.signUpUser(formData);
 
   }

@@ -49,7 +49,7 @@ export class SignUpService {
       password: data.password,
     };
     console.log(body);
-    this.http.post("http://localhost:8001/login", body).subscribe(
+    this.http.post("http://localhost:8001/login", body,{withCredentials:true}).subscribe(
       (res: any) => {
         console.log(res);
         if(res)

@@ -7,6 +7,8 @@ import { fromEvent, Subscription } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { map, filter, debounceTime, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { CommentServiceService } from '../services/comment-service.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-search-user',
   templateUrl: './search-user.component.html',
@@ -18,10 +20,11 @@ followCounts: { [key: number]: number } = {};
 showAllUserPost:any;
 searchUsers:any;
 images: any;
+getAlluserComments:any;
 users: any[] = [];
 @ViewChild('search', { static: true }) search?: ElementRef<HTMLInputElement>;
 private searchSubscription?: Subscription;
-constructor(private registerUser:RegisterUserService,private followservice:FollowServiceService,private blogservice:BlogServiceService,private http:HttpClient) { }
+constructor(private registerUser:RegisterUserService,private followservice:FollowServiceService,private blogservice:BlogServiceService,private http:HttpClient,private commentservice:CommentServiceService,private router:Router) { }
 
 ngOnInit(): void {
     if (this.search) {
@@ -41,6 +44,19 @@ showAllPostOfThatUsers(userId:any)
   {
     this.showAllUserPost=res;
     this.registerUser.userPosts.next(res);
+    console.log("user all posts,",res);
+  })
+}
+showAllcomments(userId:any)
+{
+  this.commentservice.getAllCommentsOfUser(userId).subscribe((res)=>
+  {
+      if(res)
+      {
+        this.getAlluserComments=res;
+        this.commentservice.Allcomments.next(res);
+        this.router.navigate(["/comment"]);
+      }
   })
 }
 

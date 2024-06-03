@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comments</title>
+  <style>
+    .comments-container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .comment {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .comment-author {
+      font-weight: bold;
+    }
+
+    .comment-text {
+      margin: 5px 0;
+    }
+
+    .comment-date {
+      font-size: 0.85rem;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="comments-container">
+    <!-- <h1>{{users.length}}</h1> -->
+    <!-- {{showAllComments[0]}} -->
+
+    <!-- <h1>hello</h1> -->
+
+    <div class="comment" *ngFor="let ucomment of showAllComments">
+      <!-- <div>{{ucomment}}</div> -->
+      <h1>hello</h1>
+      <!-- <div class="comment-author">{{ comment.author }}</div> -->
+
+      <div class="comment-text">{{ ucomment["comment"]}}</div>
+
+      <div class="comment-date">{{ ucomment.createdAt | date:'short' }}</div>
+    </div>
+  </div>
+</body>
+</html>
