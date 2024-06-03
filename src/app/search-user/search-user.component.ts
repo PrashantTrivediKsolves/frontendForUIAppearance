@@ -20,7 +20,7 @@ followCounts: { [key: number]: number } = {};
 showAllUserPost:any;
 searchUsers:any;
 images: any;
-getAlluserComments:any;
+getAlluserComments:any[]=[];
 users: any[] = [];
 @ViewChild('search', { static: true }) search?: ElementRef<HTMLInputElement>;
 private searchSubscription?: Subscription;
@@ -53,9 +53,11 @@ showAllcomments(userId:any)
   {
       if(res)
       {
+        // this.router.navigate(["/comment"]);
         this.getAlluserComments=res;
         this.commentservice.Allcomments.next(res);
-        this.router.navigate(["/comment"]);
+        // this.router.navigate(["/comment"]);
+
       }
   })
 }

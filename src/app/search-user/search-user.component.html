@@ -154,12 +154,31 @@
       <h1>{{ post.title }}</h1>
       <h5>{{ post.content }}</h5>
       <img [src]="'http://localhost:8001/uploads/' + post.name" alt="Uploaded Image">
-      
+
     </div>
   </div>
+
+
+  <!-- <div class="comments-container"> -->
+    <!-- <h1>{{users.length}}</h1> -->
+    <!-- {{showAllComments[0]}} -->
+
+    <!-- <h1>hello</h1> -->
+
+    <!-- <div  *ngFor="let ucomment of getAlluserComments" class="comment"> -->
+      <!-- <div>{{ucomment}}</div> -->
+      <!-- <div class="comment-author">{{ comment.author }}</div> -->
+
+      <!-- <div class="comment-text">{{ ucomment["comment"]}}</div>
+
+      <div class="comment-date">{{ ucomment.createdAt | date:'short' }}</div>
+    </div>
+  </div> -->
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+<router-outlet></router-outlet>
