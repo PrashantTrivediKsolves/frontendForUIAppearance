@@ -44,5 +44,4 @@ export class BlogServiceService {
     return this.http.get<any[]>(`http://localhost:8001/getAllTheBlogsOfUser/${userId}`);
   }
 
-
 }

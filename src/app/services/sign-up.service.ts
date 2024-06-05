@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
+
 import{HttpClient} from '@angular/common/http';
+
 import {BehaviorSubject,Subject} from 'rxjs'
+
 import { Router } from '@angular/router';
+
 import { EventEmitter } from '@angular/core';
+
 import { jwtDecode } from "jwt-decode";
 
 @Injectable({
@@ -20,11 +25,17 @@ export class SignUpService {
   subject = new Subject<String>();
 
   constructor(private http:HttpClient,private router:Router) {
+
     const storedUser = localStorage.getItem('user');
+
     if (storedUser) {
+
       const user = JSON.parse(storedUser);
+
       this.UserLoggedIn.next(true);
+
       this.subject.next(user.name);
+
     }
   }
 
@@ -109,6 +120,7 @@ export class SignUpService {
   // Call this method when the user logs out
   clearUser() {
     localStorage.removeItem('user');
+
     this.UserLoggedIn.next(false);
     this.subject.next('');
   }

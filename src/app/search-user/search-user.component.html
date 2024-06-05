@@ -140,7 +140,12 @@
           <h4>{{ user.username }}</h4>
           <h3>{{ user.email }}</h3>
           <button (click)="showAllPostOfThatUsers(user.id)" style="margin: 5px;">Show My Posts</button>
+
           <button (click)="showAllcomments(user.id)">comments..</button>
+          <div>
+            <p>{{following[user.id]||0}}  following</p>
+            <p>{{followler[user.id]||0}}  followler</p>
+          </div>
         </div>
       </div>
     </div>
@@ -150,14 +155,17 @@
   </div>
 
   <div class="container blog-container">
+
     <div class="blog-item" *ngFor="let post of showAllUserPost">
+
       <h1>{{ post.title }}</h1>
+
       <h5>{{ post.content }}</h5>
+
       <img [src]="'http://localhost:8001/uploads/' + post.name" alt="Uploaded Image">
 
     </div>
   </div>
-
 
   <!-- <div class="comments-container"> -->
     <!-- <h1>{{users.length}}</h1> -->

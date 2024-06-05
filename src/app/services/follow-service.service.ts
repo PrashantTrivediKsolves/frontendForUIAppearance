@@ -42,5 +42,10 @@ export class FollowServiceService {
   {
     return this.http.get<any[]>(`http://localhost:8001/userfollowlers/${FollowId}`);
   }
+
+  getAllFollowingUserCount(userId:any)
+  {
+    return this.http.get<any[]>(`http://localhost:8001/following/${userId}`);
+  }
 }
 

@@ -8,15 +8,18 @@ import { Router } from '@angular/router';
 })
 export class CommentServiceService {
   Allcomments=new Subject<any[]>();
+
   private apiUrl = 'http://localhost:8001';
 
   constructor(private http: HttpClient,private router:Router) { }
 
   getComments(postId: number): Observable<any[]> {
+
     return this.http.get<any[]>(`${this.apiUrl}/getAllCommentOnPost/${postId}`);
   }
 
   addComment(comment: any): Observable<any> {
+
     return this.http.post<any>( `${this.apiUrl}/comment`, comment);
   }
 
@@ -24,7 +27,9 @@ export class CommentServiceService {
   {
 
     const response=this.http.get<any[]>(`${this.apiUrl}/getAllcomment/${userId}`);
+
     this.router.navigate(["/comment"]);
+
     return response;
   }
 }

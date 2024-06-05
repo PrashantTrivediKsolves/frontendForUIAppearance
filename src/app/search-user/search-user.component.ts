@@ -22,6 +22,8 @@ searchUsers:any;
 images: any;
 getAlluserComments:any[]=[];
 users: any[] = [];
+followler: { [key: number]: number } = {};
+following: { [key: number]: number } = {};
 @ViewChild('search', { static: true }) search?: ElementRef<HTMLInputElement>;
 private searchSubscription?: Subscription;
 constructor(private registerUser:RegisterUserService,private followservice:FollowServiceService,private blogservice:BlogServiceService,private http:HttpClient,private commentservice:CommentServiceService,private router:Router) { }
@@ -35,6 +37,17 @@ ngOnInit(): void {
         map((response: any) => response)
       ).subscribe((users: any) => {
         this.users = users;
+        this.users.forEach((user)=>
+        {
+          this.followservice.getAllFollowingUserCount(user.id).subscribe((count)=>
+            {
+              this.following[user.id]=count.length;
+            })
+            this.followservice.getAllUserFollower(user.id).subscribe((count)=>
+            {
+              this.followler[user.id]=count.length;
+            })
+        })
       })
     }
 }
@@ -46,6 +59,14 @@ showAllPostOfThatUsers(userId:any)
     this.registerUser.userPosts.next(res);
     console.log("user all posts,",res);
   })
+  // this.followservice.getAllFollowingUserCount(userId).subscribe((count)=>
+  // {
+  //   this.following[userId]=count.length;
+  // })
+  // this.followservice.getAllUserFollower(userId).subscribe((count)=>
+  // {
+  //   this.followler[userId]=count.length;
+  // })
 }
 showAllcomments(userId:any)
 {
@@ -61,6 +82,17 @@ showAllcomments(userId:any)
       }
   })
 }
+
+
+// followingCount()
+// {
+
+// }
+
+// followlerCount()
+// {
+
+// }
 
 ngOnDestroy() {
   if (this.searchSubscription) {
