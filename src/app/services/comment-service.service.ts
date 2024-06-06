@@ -22,7 +22,6 @@ export class CommentServiceService {
 
     return this.http.post<any>( `${this.apiUrl}/comment`, comment);
   }
-
   getAllCommentsOfUser(userId:number): Observable<any[]>
   {
 

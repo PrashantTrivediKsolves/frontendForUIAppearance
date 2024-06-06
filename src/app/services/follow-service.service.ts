@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class FollowServiceService {
+  followlersUsersData=new BehaviorSubject<any>([{}]);
+  followlingUserData=new BehaviorSubject<any>([{}]);
   userId:any;
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,private router:Router) {
     let userStore=localStorage.getItem('user');
     console.log(userStore);
     let userData=userStore&&JSON.parse(userStore);
@@ -40,12 +44,19 @@ export class FollowServiceService {
 
   getAllUserFollower(FollowId:any)
   {
-    return this.http.get<any[]>(`http://localhost:8001/userfollowlers/${FollowId}`);
+  const res= this.http.get<any[]>(`http://localhost:8001/userfollowlers/${FollowId}`);
+  // this.router.navigate(["show-followlers"])
+
+  return res;
+
   }
 
   getAllFollowingUserCount(userId:any)
   {
-    return this.http.get<any[]>(`http://localhost:8001/following/${userId}`);
+    const res= this.http.get<any[]>(`http://localhost:8001/following/${userId}`);
+    // this.router.navigate(["show-followings"])
+
+    return res;
   }
 }
 

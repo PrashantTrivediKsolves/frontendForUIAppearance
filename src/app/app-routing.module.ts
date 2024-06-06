@@ -21,6 +21,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ShowAllPostOfEachUserComponent } from './show-all-post-of-each-user/show-all-post-of-each-user.component';
 import { SearchUserComponent } from './search-user/search-user.component';
 import { ShowAllCommentsComponent } from './show-all-comments/show-all-comments.component';
+import { ShowFollowerUserComponent } from './show-follower-user/show-follower-user.component';
+import { ShowFollowingUserComponent } from './show-following-user/show-following-user.component';
 
 
 const routes: Routes = [
@@ -74,6 +76,14 @@ const routes: Routes = [
   {
     path:"comment",
     component:ShowAllCommentsComponent
+  },
+  {
+    path:"show-followlers",
+    component:ShowFollowerUserComponent
+  },
+  {
+    path:"show-followings",
+    component:ShowFollowingUserComponent
   },
   {
     path:"**",

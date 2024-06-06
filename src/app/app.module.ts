@@ -29,7 +29,10 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ShowAllPostOfEachUserComponent } from './show-all-post-of-each-user/show-all-post-of-each-user.component';
 import { SearchUserComponent } from './search-user/search-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ShowAllCommentsComponent } from './show-all-comments/show-all-comments.component'
+import { ShowAllCommentsComponent } from './show-all-comments/show-all-comments.component';
+import { CommonModule } from '@angular/common';
+import { ShowFollowingUserComponent } from './show-following-user/show-following-user.component';
+import { ShowFollowerUserComponent } from './show-follower-user/show-follower-user.component'
 @NgModule({
 
   declarations: [
@@ -48,13 +51,16 @@ import { ShowAllCommentsComponent } from './show-all-comments/show-all-comments.
     ShowAllPostOfEachUserComponent,
     SearchUserComponent,
     ShowAllCommentsComponent,
+    ShowFollowingUserComponent,
+    ShowFollowerUserComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

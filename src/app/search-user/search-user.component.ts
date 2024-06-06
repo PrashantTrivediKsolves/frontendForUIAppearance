@@ -2,13 +2,14 @@
 import { RegisterUserService } from '../services/register-user.service';
 import { FollowServiceService } from '../services/follow-service.service';
 import { BlogServiceService } from '../services/blog-service.service';
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { map, filter, debounceTime, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { CommentServiceService } from '../services/comment-service.service';
 import { Router } from '@angular/router';
+import { Component,ViewContainerRef,ComponentFactoryResolver} from '@angular/core';
 @Component({
   selector: 'app-search-user',
   templateUrl: './search-user.component.html',
@@ -24,9 +25,12 @@ getAlluserComments:any[]=[];
 users: any[] = [];
 followler: { [key: number]: number } = {};
 following: { [key: number]: number } = {};
+followersUser:any[]=[];
+followingUser:any[]=[];
 @ViewChild('search', { static: true }) search?: ElementRef<HTMLInputElement>;
 private searchSubscription?: Subscription;
-constructor(private registerUser:RegisterUserService,private followservice:FollowServiceService,private blogservice:BlogServiceService,private http:HttpClient,private commentservice:CommentServiceService,private router:Router) { }
+constructor(private registerUser:RegisterUserService,private followservice:FollowServiceService,private blogservice:BlogServiceService,private http:HttpClient,private commentservice:CommentServiceService,private router:Router,private vcr:ViewContainerRef,
+  private cfr:ComponentFactoryResolver) { }
 
 ngOnInit(): void {
     if (this.search) {
@@ -42,13 +46,26 @@ ngOnInit(): void {
           this.followservice.getAllFollowingUserCount(user.id).subscribe((count)=>
             {
               this.following[user.id]=count.length;
+              if(count.length>0)
+              {
+                  this.followingUser=count;
+                  this.followservice.followlingUserData.next(this.followingUser);
+              }
+              // console.log("following is ",this.followingUser);
             })
             this.followservice.getAllUserFollower(user.id).subscribe((count)=>
             {
               this.followler[user.id]=count.length;
+              if(count.length>0)
+                {
+                    this.followersUser=count;
+                    this.followservice.followlersUsersData.next(this.followersUser);
+                }
+
             })
         })
       })
+      // console.log(this.followersUser);
     }
 }
 showAllPostOfThatUsers(userId:any)
@@ -82,7 +99,47 @@ showAllcomments(userId:any)
       }
   })
 }
+// showFollowler(userId:any)
+// {
+//   this.followservice.getAllUserFollower(userId).subscribe((res)=>
+//   {
+//     if(res)
+//       {
+//         this.followservice.followlersUsersData.next(res);
+//       }
+//   })
+// }
 
+// showFollowing(userId:any)
+// {
+//   this.followservice.getAllFollowingUserCount(userId).subscribe((res)=>
+//     {
+//       if(res)
+//         {
+//           this.followservice.followlingUserData.next(res);
+//         }
+//     })
+// }
+
+async showFollowler() {
+  this.router.navigate(["show-followlers"]);
+  const { ShowFollowerUserComponent } = await import('src/app/show-follower-user/show-follower-user.component');
+  this.vcr.clear();
+  const componentRef = this.vcr.createComponent(
+    this.cfr.resolveComponentFactory(ShowFollowerUserComponent)
+  );
+  componentRef.instance.followlersData = this.followersUser; // Pass the data to the lazy-loaded component
+}
+
+async showFollowing() {
+  this.router.navigate(["show-followings"]);
+  const { ShowFollowingUserComponent } = await import('src/app/show-following-user/show-following-user.component');
+  this.vcr.clear();
+  const componentRef = this.vcr.createComponent(
+    this.cfr.resolveComponentFactory(ShowFollowingUserComponent)
+  );
+  componentRef.instance.followingsData = this.followingUser; // Pass the data to the lazy-loaded component
+}
 
 // followingCount()
 // {

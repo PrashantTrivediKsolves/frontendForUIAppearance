@@ -143,8 +143,12 @@
 
           <button (click)="showAllcomments(user.id)">comments..</button>
           <div>
-            <p>{{following[user.id]||0}}  following</p>
-            <p>{{followler[user.id]||0}}  followler</p>
+            <p>{{following[user.id]||0}}
+              <button (click)="showFollowing()">following</button>
+            </p>
+            <p>{{followler[user.id]||0}}
+              <button (click)="showFollowler()">followler</button>
+            </p>
           </div>
         </div>
       </div>
@@ -166,6 +170,15 @@
 
     </div>
   </div>
+  <!-- <div class="container blog-container">
+
+    <div class="blog-item" *ngFor="let user of followersUser let i=index">
+      <img [src]="'http://localhost:8001/uploads/' + user.name" alt="Uploaded Image">
+      <h1>{{ user[i].username }}</h1>
+
+      <h5>{{ user[i].email }}</h5>
+    </div>
+  </div> -->
 
   <!-- <div class="comments-container"> -->
     <!-- <h1>{{users.length}}</h1> -->
