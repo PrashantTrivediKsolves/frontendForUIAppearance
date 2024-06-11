@@ -13,6 +13,7 @@ export class ShowFollowingUserComponent implements OnInit {
   userObject:any[]=[];
   constructor(private followservice:FollowServiceService,private profileservice:ProfileServiceService) {
     console.log("Following components................");
+    console.log("following components..");
   }
 
   ngOnInit(): void {

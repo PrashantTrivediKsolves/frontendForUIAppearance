@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Followers</title>
+
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
   <style>
+
     body {
       font-family: 'Arial', sans-serif;
       background-color: #f3f2ef;
@@ -99,16 +104,18 @@
           <h1>{{user.username}}</h1>
           <h5>{{user.email}}</h5>
         </div>
-        <!-- <div class="action-buttons">
+        <div class="action-buttons">
           <button (click)="viewProfile(user.id)">View Profile</button>
-          <button (click)="messageUser(user.id)">Message</button>
-        </div> -->
+          <!-- <button (click)="messageUser(user.id)">Message</button> -->
+
+        </div>
       </div>
     </div>
     <div *ngIf="userObject.length === 0" class="no-followers">
       <p>No followers found.</p>
     </div>
   </div>
+
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

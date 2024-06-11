@@ -32,6 +32,7 @@ export class AllBlogsComponent implements OnInit {
           this.fetchComments(blog.id);
         });
       },
+
       error => {
         console.error('Error fetching blogs:', error);
       }

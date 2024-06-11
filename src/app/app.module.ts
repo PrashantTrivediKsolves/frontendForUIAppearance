@@ -32,7 +32,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ShowAllCommentsComponent } from './show-all-comments/show-all-comments.component';
 import { CommonModule } from '@angular/common';
 import { ShowFollowingUserComponent } from './show-following-user/show-following-user.component';
-import { ShowFollowerUserComponent } from './show-follower-user/show-follower-user.component'
+import { ShowFollowerUserComponent } from './show-follower-user/show-follower-user.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component'
 @NgModule({
 
   declarations: [
@@ -53,6 +54,7 @@ import { ShowFollowerUserComponent } from './show-follower-user/show-follower-us
     ShowAllCommentsComponent,
     ShowFollowingUserComponent,
     ShowFollowerUserComponent,
+    ViewProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,6 +23,7 @@ import { SearchUserComponent } from './search-user/search-user.component';
 import { ShowAllCommentsComponent } from './show-all-comments/show-all-comments.component';
 import { ShowFollowerUserComponent } from './show-follower-user/show-follower-user.component';
 import { ShowFollowingUserComponent } from './show-following-user/show-following-user.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 
 const routes: Routes = [
@@ -84,6 +85,10 @@ const routes: Routes = [
   {
     path:"show-followings",
     component:ShowFollowingUserComponent
+  },
+  {
+    path:"view-profile",
+    component:ViewProfileComponent
   },
   {
     path:"**",

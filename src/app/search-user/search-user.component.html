@@ -50,6 +50,10 @@
       border: 2px solid #0073b1;
     }
 
+    .profile-details {
+      flex-grow: 1;
+    }
+
     .profile-details h4 {
       margin: 0;
       font-size: 1.2rem;
@@ -62,8 +66,12 @@
       color: #555;
     }
 
-    .profile-details button {
+    .profile-details .profile-buttons {
       margin-top: 10px;
+    }
+
+    .profile-details button {
+      margin: 5px 5px 0 0;
       padding: 5px 10px;
       border: none;
       background-color: #0073b1;
@@ -94,6 +102,7 @@
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       transition: box-shadow 0.3s;
+      margin-bottom: 20px;
     }
 
     .blog-item:hover {
@@ -139,15 +148,16 @@
         <div class="profile-details">
           <h4>{{ user.username }}</h4>
           <h3>{{ user.email }}</h3>
-          <button (click)="showAllPostOfThatUsers(user.id)" style="margin: 5px;">Show My Posts</button>
-
-          <button (click)="showAllcomments(user.id)">comments..</button>
+          <div class="profile-buttons">
+            <button (click)="showAllPostOfThatUsers(user.id)">Show My Posts</button>
+            <button (click)="showAllcomments(user.id)">Comments..</button>
+          </div>
           <div>
-            <p>{{following[user.id]||0}}
-              <button (click)="showFollowing()">following</button>
+            <p>{{following[user.id] || 0}}
+              <button (click)="showFollowing()">Following</button>
             </p>
-            <p>{{followler[user.id]||0}}
-              <button (click)="showFollowler()">followler</button>
+            <p>{{followler[user.id] || 0}}
+              <button (click)="showFollowler()">Follower</button>
             </p>
           </div>
         </div>
@@ -159,47 +169,15 @@
   </div>
 
   <div class="container blog-container">
-
     <div class="blog-item" *ngFor="let post of showAllUserPost">
-
       <h1>{{ post.title }}</h1>
-
       <h5>{{ post.content }}</h5>
-
       <img [src]="'http://localhost:8001/uploads/' + post.name" alt="Uploaded Image">
-
     </div>
   </div>
-  <!-- <div class="container blog-container">
-
-    <div class="blog-item" *ngFor="let user of followersUser let i=index">
-      <img [src]="'http://localhost:8001/uploads/' + user.name" alt="Uploaded Image">
-      <h1>{{ user[i].username }}</h1>
-
-      <h5>{{ user[i].email }}</h5>
-    </div>
-  </div> -->
-
-  <!-- <div class="comments-container"> -->
-    <!-- <h1>{{users.length}}</h1> -->
-    <!-- {{showAllComments[0]}} -->
-
-    <!-- <h1>hello</h1> -->
-
-    <!-- <div  *ngFor="let ucomment of getAlluserComments" class="comment"> -->
-      <!-- <div>{{ucomment}}</div> -->
-      <!-- <div class="comment-author">{{ comment.author }}</div> -->
-
-      <!-- <div class="comment-text">{{ ucomment["comment"]}}</div>
-
-      <div class="comment-date">{{ ucomment.createdAt | date:'short' }}</div>
-    </div>
-  </div> -->
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-<router-outlet></router-outlet>
